@@ -1,0 +1,394 @@
+@import '../Variables';
+
+.player-info {
+    width: calc(100% - 40px);
+    max-width: 1280px;
+    background-color: $black700;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    height: 160px;
+    display: flex;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .avatar {
+        width: 200px;
+        position: relative;
+        height: 200px;
+        top: -40px;
+        flex-shrink: 0;
+        margin-right: 20px;
+        border: 4px solid $black700;
+        border-radius: 30px;
+
+        img {
+            border-radius: 30px;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .level {
+            background-color: $black700;
+            width: fit-content;
+            padding: 0 10px;
+            border-radius: 10px;
+            margin: 0 auto;
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            right: 0;
+            height: 30px;
+            line-height: 30px;
+        }
+    }
+
+    .info {
+        width: 100%;
+        
+        .old-ranks {
+            background-color: $black800;
+            height: 40px;
+            border-radius: 10px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+
+            .rank {
+                margin: 0 5px;
+                background-color: $black600;
+                padding: 5px 10px;
+                font-size: 12px;
+                font-weight: 600;
+                border-radius: 10px;
+
+                .season {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        .name-bar {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+
+            .name {
+                font-weight: 700;
+                font-size: 43px;
+                margin: 0;
+                margin-left: 10px;
+                margin-right: 20px;
+            }
+
+            .buttons {
+                display: flex;
+                margin-top: 5px;
+    
+                button {
+                    background-color: $black800;
+                    border: none;
+                    outline: none;
+                    border-radius: 10px;
+                    padding: 5px 10px;
+                    color: rgb(233, 233, 233);
+                    margin: 0 5px;
+                    cursor: pointer;
+                    transition: .15s ease-out;
+                    position: relative;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    height: 30px;
+
+                    span.material-icon {
+                        font-size: 20px;
+                        margin-right: 5px;
+                    }
+
+                    &.update.loading::before {
+                        content: '';
+                        background-color: rgba(71, 71, 71, 0.486);
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    &.update.loading::after {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        margin: auto;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        border: 3px solid transparent;
+                        border-top: 3px solid rgb(245, 245, 245);
+                        border-bottom: 3px solid rgb(245, 245, 245);
+                        animation: spin 2s infinite;
+                    }
+
+                    @keyframes spin {
+                        from {
+                            transform: rotate(0);
+                        }
+                        to {
+                            transform: rotate(360deg);
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $black500;
+                    }
+                }
+            }
+        }
+
+        .ranking {
+            margin-left: 10px;
+            opacity: .5;
+
+            .last-update {
+                margin-left: 30px;
+            }
+        }
+    }
+}
+
+.player-content {
+    display: flex;
+    max-width: 1280px;
+    margin: 20px auto;
+    margin-top: 50px;
+    width: calc(100% - 40px);
+
+    .side-bar {
+        width: 300px;
+        background-color: $black700;
+        border-radius: 10px;
+        flex-shrink: 0;
+        padding: 10px;
+        height: fit-content;
+
+        .ranks {
+            .rank {
+                width: 100%;
+                background-color: $black800;
+                height: 110px;
+                margin: 0 auto;
+                margin-bottom: 20px;
+                margin-top: 10px;
+                border-radius: 10px;
+                display: flex;
+                position: relative;
+
+                .unranked {
+                    position: absolute;
+                    inset: 0;
+                    height: fit-content;
+                    margin: auto;
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: 900;
+                    opacity: .2;
+                }
+
+
+                .queueType {
+                    position: absolute;
+                    top: -21px;
+                    left: calc(50% - 100px);
+                    background-color: $black700;
+                    border: 2px solid $black800;
+                    font-size: 12px;
+                    width: 200px;
+                    text-align: center;
+                    padding: 2px;
+                    border-radius: 5px;
+                }
+
+                img {
+                    height: 80px;
+                    margin-top: 15px;
+                    margin-left: 10px;
+                }
+
+                .stats {
+                    width: 100%;
+                    margin-left: 10px;
+                    margin-top: 10px;
+
+                    .tier {
+                        font-weight: 700;
+                        font-size: 16px;
+                        width: 100%;
+                        margin-bottom: 0;
+                        margin-top: 10px;
+                    }
+
+                    .points {
+                        display: flex;
+                        margin-top: 5px;
+
+                        p {
+                            background-color: $black600;
+                            border-radius: 5px;
+                            padding: 3px 8px;
+                            font-size: 12px;
+                            font-weight: 500;
+                            margin: 0 2px;
+                            &:first-child {
+                                margin-left: 0;
+                            }
+                        }
+                    }
+
+                    .win-ratio {
+                        margin: 0;
+                        margin-top: 3px;
+                    }
+                }
+
+            }
+        }
+
+        .top-champions {
+            width: 100%;
+            background-color: $black800;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .champion {
+                background-color: $black700;
+                width: 100%;
+                height: 45px;
+                margin-bottom: 10px;
+                border-radius: 25px;
+                display: flex;
+                align-items: center;
+
+                &>div {
+                    margin-left: 10px;
+                    font-size: 15px;
+                    font-weight: 500;
+                    display: flex;
+
+                    img {
+                        height: 14px;
+                        margin-right: 2px;
+                        position: relative;
+                        top: 3.5px;
+                        filter: invert(70%)
+                    }
+                }
+
+                .kda {
+                    img:nth-child(2) {
+                        margin-left: 10px;
+                    }
+                    width: 93px;
+
+                    span {
+                        display: block;
+                        width: 38px;
+                    }
+                }
+
+
+                .games {
+                    img {
+                        margin-right: 5px;
+                    }
+                }
+
+
+                .win-ratio {
+                    width: 45px;
+                    height: 45px;
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    background-color: $black800;
+                    font-size: 15px;
+                    font-weight: 500;
+                    align-self: flex-end;
+                    margin-left: auto;
+                    position: relative;
+                }
+
+                  svg {
+                    display: block;
+                    max-width: 100%;
+                    max-height: 250px;
+                    position: relative;
+                    fill:rgb(128, 72, 72)
+                  }
+                  
+                  .circle-bg {
+                    fill: none;
+                    stroke: $black500;
+                    stroke-width: 4;
+                  }
+                  
+                  .circle {
+                    fill: none;
+                    stroke-width: 4;
+                    stroke-linecap: round;
+                    animation: progress 1s ease-out forwards;
+                  }
+                  
+                  @keyframes progress {
+                    0% {
+                      stroke-dasharray: 0 100;
+                    }
+                  }
+                  
+                
+                  .percentage {
+                    display: block;
+                    position: absolute;
+                    width: fit-content;
+                    height: fit-content;
+                    top: 12px;
+                    margin: auto;
+                    color: inherit;
+                  }
+
+
+                img {
+                    height: 100%;
+                    border-radius: 50%;
+                }
+            }
+
+            button {
+                background-color: $black700;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                padding: 5px 10px;
+                color: rgb(235, 235, 235);
+                font-weight: 400;
+                margin: 0 auto;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    .center {
+        width: 100%;
+        background-color: $black700;
+        margin-left: 20px;
+        border-radius: 10px;
+        position: relative;
+    }
+}
+
